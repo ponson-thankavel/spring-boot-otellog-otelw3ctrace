@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @EnableConfigurationProperties
-@ComponentScan
+@ComponentScan("com.ponson")
 public class SampleActuatorApplication {
 
 	public static void main(String[] args) throws Exception {

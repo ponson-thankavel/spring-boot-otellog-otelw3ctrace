@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!--<include resource="org/springframework/boot/logging/logback/base.xml"/>-->
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<appender name="CONSOLE-JSON" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+			<providers>
+				<timestamp>
+					<timeZone>UTC</timeZone>
+					<Pattern>[UNIX_TIMESTAMP_AS_NUMBER]</Pattern>
+					<FieldName>Timestamp</FieldName>
+				</timestamp>
+				<pattern>
+					<pattern>
+						{
+						  "SeverityText": "%level",
+						  "Attributes": {
+						    "custom.timestamp": "%date{ISO8601}",
+							"net.remote.ip": "%X{net.peer.ip}",
+							"http.user_agent": "%X{http.user_agent}",
+							"http.url": "%X{http.url}",
+							"http.method": "%X{http.method}"
+						  },
+						  "Resource": {
+						    "thread": "%thread",
+						    "class": "%logger{40}"
+						  },
+						  "TraceId": "%X{trace_id}",
+						  "SpanId": "%X{span_id}",
+						  "Body": "%message"
+						}
+					</pattern>
+				</pattern>
+				<stackTrace>
+					<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+						<maxDepthPerThrowable>30</maxDepthPerThrowable>
+						<maxLength>10000</maxLength>
+						<shortenedClassNameLength>20</shortenedClassNameLength>
+						<exclude>sun\.reflect\..*\.invoke.*</exclude>
+						<exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+						<rootCauseFirst>true</rootCauseFirst>
+					</throwableConverter>
+				</stackTrace>
+			</providers>
+		</encoder>
+	</appender>
+	<logger name="com.finastra" level="DEBUG" />
+	<logger name="com.misys" level="DEBUG" />
+	<logger name="com.trmsys" level="DEBUG" />
+	<logger name="springframework.security.oauth2.provider.authentication" level="DEBUG" />
+
+	<root level="WARN">
+		<appender-ref ref="CONSOLE-JSON" />
+	</root>
+</configuration>

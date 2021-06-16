@@ -8,10 +8,10 @@
 		<version>2.4.4</version>
 	</parent>
 
-	<artifactId>spring-boot-otellog-otelw3ctrace</artifactId>
+	<artifactId>spring-boot-otellog-otelw3ctrace-backend</artifactId>
 	<groupId>com.ponson</groupId>
-	<name>Spring Boot OTel Log and Trace</name>
-	<description>Spring Boot OpenTelemetry Log and Trace Implementation</description>
+	<name>Spring Boot OTel Log and Trace Backend</name>
+	<description>Spring Boot OpenTelemetry Log and Trace Implementation Backend Service</description>
 	<version>1.0-SNAPSHOT</version>
 
 	<url>http://projects.spring.io/spring-boot/</url>
@@ -45,6 +45,16 @@
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-registry-prometheus</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-api</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.opentelemetry</groupId>
+			<artifactId>opentelemetry-extension-annotations</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -53,10 +63,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<jvmArguments>
-						-javaagent:C:/otel/opentelemetry-javaagent-all.jar
+						-javaagent:C:/otel/opentelemetry-javaagent-all_12-May-2021.jar
 						-Dotel.exporter=otlp_span
-						-Dotel.exporter.otlp.endpoint=localhost:55780
+						-Dotel.exporter.otlp.endpoint=http://localhost:55780
 						-Dotel.exporter.otlp.insecure=true
+						-Dotel.resource.attributes=service.name=gpp-backend,service.namespace=gpp
+						-Dotel.propagators=tracecontext,baggage
 					</jvmArguments>
 				</configuration>
 			</plugin>

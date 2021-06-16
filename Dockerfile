@@ -1,6 +1,6 @@
 FROM openjdk:11
 
-COPY target/spring-boot-telemetry-1.0-SNAPSHOT.jar app.jar
+COPY target/spring-boot-otellog-otelw3ctrace-1.0-SNAPSHOT.jar app.jar
 RUN mkdir /otel
 COPY lib/opentelemetry-javaagent-all.jar /otel/opentelemetry-javaagent-all.jar
 

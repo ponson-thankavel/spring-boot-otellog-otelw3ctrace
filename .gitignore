@@ -23,5 +23,5 @@
 hs_err_pid*
 
 .idea
-spring-boot-otellog-otelw3ctrace.iml
+spring-boot-otellog-otelw3ctrace-backend.iml
 target
