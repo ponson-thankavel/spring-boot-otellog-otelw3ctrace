@@ -63,12 +63,13 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<jvmArguments>
-						-javaagent:C:/otel/opentelemetry-javaagent-all_12-May-2021.jar
+						<!---javaagent:C:/otel/opentelemetry-javaagent-all_12-May-2021.jar
 						-Dotel.exporter=otlp_span
 						-Dotel.exporter.otlp.endpoint=http://localhost:55780
 						-Dotel.exporter.otlp.insecure=true
 						-Dotel.resource.attributes=service.name=gpp-backend,service.namespace=gpp
 						-Dotel.propagators=tracecontext,baggage
+						-->
 					</jvmArguments>
 				</configuration>
 			</plugin>

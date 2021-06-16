@@ -1,4 +1,4 @@
-package com.ponson.actuator;
+package com.ponson.filter;
 
 import ch.qos.logback.classic.helpers.MDCInsertingServletFilter;
 import org.springframework.http.HttpHeaders;
